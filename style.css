@@ -1,0 +1,152 @@
+/* Import fonts for the luxury theme */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;600&display=swap');
+
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Elegant Serif for headings, clean Sans for UI */
+    font-family: 'Montserrat', sans-serif;
+    /* Deep matte black background matching the studio shots */
+    background-color: #0b0b0b;
+    /* Soft white text for readability */
+    color: #e5e5e5;
+    padding: 10px;
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    /* Metallic Gold color to match the frames */
+    color: #d4af37;
+    /* Serif font to match the 'BHADRA'S' engraving */
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+}
+
+/* Gallery Grid Layout */
+#gallery-container {
+    display: grid;
+    /* Increased to 500px.
+       This makes the images significantly larger, likely fitting only
+       2 columns on a standard laptop screen. */
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    /* The height of rows is implicit, but we define a dense flow to fill gaps */
+    grid-auto-flow: dense;
+    gap: 15px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Base Item Style */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px; /* Sharper corners fit the premium look better than 8px */
+    /* Deeper shadow for dark mode */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    /* Subtle border to define the edge against the black bg */
+
+    /* PREPARE FOR SCROLL ANIMATION */
+    /* Initial state: hidden and slightly pushed down */
+    opacity: 0;
+    transform: translateY(30px);
+    /* Smooth transition for the reveal effect */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Class added by JS when element comes into view */
+.gallery-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Image styling to ensure they fill their containers */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    display: block;
+    transition: transform 0.5s ease; /* Slower, smoother transition */
+    cursor: pointer; /* Indicates interactivity */
+}
+
+/* Hover Effect */
+.gallery-item:hover img {
+    transform: scale(1.03); /* More subtle zoom for elegance */
+    opacity: 0.9;
+}
+
+/* --- Size Modifiers --- */
+
+/* Large: Spans 2 columns and 2 rows */
+.item-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Wide: Spans 2 columns */
+.item-wide {
+    grid-column: span 2;
+}
+
+/* Tall: Spans 2 rows */
+.item-tall {
+    grid-row: span 2;
+}
+
+/* --- LIGHTBOX STYLES (New) --- */
+#lightbox {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Very dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#lightbox.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); /* Soft gold glow */
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+#lightbox.active img {
+    transform: scale(1);
+}
+
+/* Responsive adjustments for mobile phones */
+@media (max-width: 600px) {
+    /* On small screens, force everything to be 1 column
+       and reset the specific spans so they stack vertically */
+    #gallery-container {
+        grid-template-columns: 1fr;
+    }
+
+    .item-large,
+    .item-wide,
+    .item-tall {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
