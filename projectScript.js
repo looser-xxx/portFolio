@@ -1,54 +1,76 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* --- 1. LIGHTBOX FUNCTIONALITY --- */
-
-    // Create the lightbox element dynamically
-    const lightbox = document.createElement('div');
-    lightbox.id = 'lightbox';
-    document.body.appendChild(lightbox);
-
-    // Create the image element inside the lightbox
-    const lightboxImg = document.createElement('img');
-    lightbox.appendChild(lightboxImg);
-
-    // Select all images in the gallery
-    const images = document.querySelectorAll('.gallery-item img');
-
-    // Open Lightbox on Click
-    images.forEach(image => {
-        image.addEventListener('click', e => {
-            lightbox.classList.add('active');
-            lightboxImg.src = image.src;
-        });
-    });
-
-    // Close Lightbox on Click (anywhere outside the image)
-    lightbox.addEventListener('click', e => {
-        if (e.target !== lightboxImg) {
-            lightbox.classList.remove('active');
-        }
-    });
-
-
-    /* --- 2. SCROLL ANIMATION --- */
-
-    // Config for the observer (start animation when 15% of item is visible)
+    /* --- 1. Scroll Reveal Animation --- */
     const observerOptions = {
-        threshold: 0.15
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Run animation only once
+                // Add a slight delay based on index if needed, or just let them flow
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100); // Stagger effect if multiple appear at once
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Observe all gallery items
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach(item => {
-        observer.observe(item);
+    const items = document.querySelectorAll('.masonry-item');
+    items.forEach(item => observer.observe(item));
+
+
+    /* --- 2. Lightbox Functionality --- */
+    
+    // Build Lightbox DOM
+    const lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
+    
+    const lightboxImg = document.createElement('img');
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '&times;'; // HTML entity for 'X'
+    closeBtn.className = 'close-lightbox';
+    closeBtn.ariaLabel = 'Close Lightbox';
+
+    lightbox.appendChild(lightboxImg);
+    lightbox.appendChild(closeBtn);
+    document.body.appendChild(lightbox);
+
+    // Open Lightbox
+    items.forEach(item => {
+        item.addEventListener('click', () => {
+            const img = item.querySelector('img');
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Disable background scroll
+        });
     });
+
+    // Close Lightbox (Function)
+    const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // Re-enable scroll
+    };
+
+    // Close events
+    closeBtn.addEventListener('click', closeLightbox);
+    
+    // Close when clicking outside image
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
+
 });

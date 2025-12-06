@@ -3,57 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Gallery</title>
-    <!-- Link to the separate CSS file -->
+    <title>Project 1 | Reality Studios</title>
     <link rel="stylesheet" href="projectStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<header class="gallery-header">
-    <h1>Project 1</h1>
-</header>
+    <nav class="back-nav">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+    </nav>
 
-<!-- Main Container -->
-<main id="gallery-container">
+    <header class="project-header">
+        <h1>Project One</h1>
+        <p>A curated collection of high-fidelity studio shots demonstrating lighting and texture.</p>
+    </header>
 
-    <!-- Image 1: Large (Big feature) -->
-    <div class="gallery-item item-large">
-        <img src="images/pro_1/a_compressed.webp" alt="Large Gallery Image">
-    </div>
+    <!-- Masonry Grid Container -->
+    <main class="masonry-container">
+        
+        <!-- Item 1: Big Feature -->
+        <div class="masonry-item big">
+            <img src="images/pro_1/a_compressed.webp" alt="Studio Shot A">
+        </div>
 
-    <!-- Image 2: Standard -->
-    <div class="gallery-item">
-        <img src="images/pro_1/b_compressed.webp" alt="Gallery Image">
-    </div>
+        <!-- Item 2: Tall Vertical -->
+        <div class="masonry-item tall">
+            <img src="images/pro_1/d_compressed.webp" alt="Studio Shot D (Tall)">
+        </div>
 
-    <!-- Image 3: Tall (Vertical) -->
-    <div class="gallery-item item-tall">
-        <img src="images/pro_1/d_compressed.webp" alt="Tall Gallery Image">
-    </div>
+        <!-- Item 3: Standard -->
+        <div class="masonry-item">
+            <img src="images/pro_1/b_compressed.webp" alt="Studio Shot B">
+        </div>
 
-    <!-- Image 4: Standard -->
-    <div class="gallery-item">
-        <img src="images/pro_1/e_compressed.webp" alt="Gallery Image">
-    </div>
+        <!-- Item 4: Wide Horizontal -->
+        <div class="masonry-item wide">
+            <img src="images/pro_1/h_compressed.webp" alt="Studio Shot H (Wide)">
+        </div>
 
-    <!-- Image 5: Wide (Horizontal) -->
-    <div class="gallery-item item-wide">
-        <img src="images/pro_1/h_compressed.webp" alt="Wide Gallery Image">
-    </div>
+        <!-- Item 5: Standard -->
+        <div class="masonry-item">
+            <img src="images/pro_1/e_compressed.webp" alt="Studio Shot E">
+        </div>
 
-    <!-- Image 6: Standard -->
-    <div class="gallery-item">
-        <img src="images/pro_1/g_compressed.webp" alt="Gallery Image">
-    </div>
+        <!-- Item 6: Tall -->
+        <div class="masonry-item tall">
+            <img src="images/pro_1/g_compressed.webp" alt="Studio Shot G">
+        </div>
 
-    <!-- Image 7: Standard -->
-    <div class="gallery-item">
-        <img src="images/pro_1/f_compressed.webp" alt="Gallery Image">
-    </div>
+        <!-- Item 7: Standard -->
+        <div class="masonry-item">
+            <img src="images/pro_1/f_compressed.webp" alt="Studio Shot F">
+        </div>
 
-</main>
+    </main>
 
-<!-- Link to the JavaScript file -->
-<script src="projectScript.js"></script>
+    <footer class="project-footer">
+        <p>&copy; 2025 Reality Studios</p>
+    </footer>
+
+    <script src="projectScript.js"></script>
 </body>
 </html>

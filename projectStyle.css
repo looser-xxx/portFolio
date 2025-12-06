@@ -1,7 +1,16 @@
-/* Import fonts for the luxury theme */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;600&display=swap');
+/* --- CSS Variables & Reset --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
 
-/* Reset and Base Styles */
+:root {
+    --bg-color: #0b0b0b;
+    --card-bg: #141414;
+    --text-main: #e5e5e5;
+    --text-muted: #888;
+    --accent-gold: #d4af37;
+    --gap-size: 1.5rem;
+    --radius: 8px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,107 +18,116 @@
 }
 
 body {
-    /* Elegant Serif for headings, clean Sans for UI */
     font-family: 'Montserrat', sans-serif;
-    /* Deep matte black background matching the studio shots */
-    background-color: #0b0b0b;
-    /* Soft white text for readability */
-    color: #e5e5e5;
-    padding: 10px;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-.gallery-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    /* Metallic Gold color to match the frames */
-    color: #d4af37;
-    /* Serif font to match the 'BHADRA'S' engraving */
-    font-family: 'Playfair Display', serif;
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+/* --- Navigation --- */
+.back-nav {
+    padding: 2rem 5%;
+}
+
+.back-nav a {
+    font-size: 0.9rem;
+    color: var(--text-muted);
     font-weight: 600;
-    font-size: 2.5rem;
-    letter-spacing: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Gallery Grid Layout */
-#gallery-container {
+.back-nav a:hover {
+    color: var(--accent-gold);
+    transform: translateX(-5px);
+}
+
+/* --- Header --- */
+.project-header {
+    padding: 2rem 5% 4rem 5%;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.project-header h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.project-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* --- Masonry Layout (CSS Grid Mosaic) --- */
+.masonry-container {
     display: grid;
-    /* Increased to 500px.
-       This makes the images significantly larger, likely fitting only
-       2 columns on a standard laptop screen. */
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    /* The height of rows is implicit, but we define a dense flow to fill gaps */
-    grid-auto-flow: dense;
-    gap: 15px;
-    max-width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); /* Increased base column size for larger images */
+    grid-auto-rows: 500px; /* Increased base row height for larger images */
+    grid-auto-flow: dense; /* Fills gaps automatically */
+    gap: var(--gap-size);
+    padding: 0 7.5% 4rem 7.5%; /* Wider padding for 85% width */
     margin: 0 auto;
 }
 
-/* Base Item Style */
-.gallery-item {
-    position: relative;
+.masonry-item {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
     overflow: hidden;
-    border-radius: 4px; /* Sharper corners fit the premium look better than 8px */
-    /* Deeper shadow for dark mode */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    /* Subtle border to define the edge against the black bg */
-
-    /* PREPARE FOR SCROLL ANIMATION */
-    /* Initial state: hidden and slightly pushed down */
+    position: relative;
+    cursor: pointer;
     opacity: 0;
     transform: translateY(30px);
-    /* Smooth transition for the reveal effect */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition: transform 0.3s ease, opacity 0.6s ease;
 }
 
-/* Class added by JS when element comes into view */
-.gallery-item.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* Size Modifiers */
+.masonry-item.wide {
+    grid-column: span 2;
 }
 
-/* Image styling to ensure they fill their containers */
-.gallery-item img {
+.masonry-item.tall {
+    grid-row: span 2;
+}
+
+.masonry-item.big {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.masonry-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures image covers the area without distortion */
+    object-fit: cover; /* Critical for grid cells */
     display: block;
-    transition: transform 0.5s ease; /* Slower, smoother transition */
-    cursor: pointer; /* Indicates interactivity */
+    transition: transform 0.5s ease;
 }
 
-/* Hover Effect */
-.gallery-item:hover img {
-    transform: scale(1.03); /* More subtle zoom for elegance */
-    opacity: 1.2;
+/* Hover Effects */
+.masonry-item:hover img {
+    transform: scale(1.05);
 }
 
-/* --- Size Modifiers --- */
-
-/* Large: Spans 2 columns and 2 rows */
-.item-large {
-    grid-column: span 2;
-    grid-row: span 2;
-}
-
-/* Wide: Spans 2 columns */
-.item-wide {
-    grid-column: span 2;
-}
-
-/* Tall: Spans 2 rows */
-.item-tall {
-    grid-row: span 2;
-}
-
-/* --- LIGHTBOX STYLES (New) --- */
+/* --- Lightbox --- */
 #lightbox {
     position: fixed;
-    z-index: 1000;
+    z-index: 9999;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.95); /* Very dark overlay */
+    background: rgba(11, 11, 11, 0.95);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -125,9 +143,10 @@ body {
 
 #lightbox img {
     max-width: 90%;
-    max-height: 90%;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); /* Soft gold glow */
-    transform: scale(0.9);
+    max-height: 90vh;
+    border-radius: 4px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    transform: scale(0.95);
     transition: transform 0.3s ease;
 }
 
@@ -135,18 +154,50 @@ body {
     transform: scale(1);
 }
 
-/* Responsive adjustments for mobile phones */
-@media (max-width: 600px) {
-    /* On small screens, force everything to be 1 column
-       and reset the specific spans so they stack vertically */
-    #gallery-container {
-        grid-template-columns: 1fr;
-    }
+.close-lightbox {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    transition: color 0.3s;
+}
 
-    .item-large,
-    .item-wide,
-    .item-tall {
-        grid-column: auto;
-        grid-row: auto;
+.close-lightbox:hover {
+    color: var(--accent-gold);
+}
+
+/* --- Footer --- */
+.project-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid #1a1a1a;
+    margin-top: 2rem;
+}
+
+/* --- Animations --- */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .masonry-container {
+        column-count: 2;
+    }
+    .project-header h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .masonry-container {
+        column-count: 1;
     }
 }
