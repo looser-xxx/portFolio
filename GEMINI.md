@@ -5,40 +5,52 @@ This project is a static web portfolio designed to showcase creative work with a
 
 ## Directory Structure
 *   `index.html`: The main landing page. Contains the Hero section, a "Selected Works" grid linking to individual projects, and a Contact section.
-*   `homeCss.css`: Styles specific to the landing page (`index.html`), including the hero animation, project cards, and the responsive contact section.
-*   `homeJs.js`: JavaScript for the landing page, handling smooth scrolling and scroll-reveal animations for project cards and the contact section.
-*   `project1.html` / `project2.html`: Individual project detail pages (formerly `pro_1.html` and `pro_2.html`). They display image galleries for specific projects.
-*   `style.css`: The stylesheet for the individual project pages (`project1.html`, `project2.html`), defining the gallery grid and lightbox styles.
-*   `script.js`: Shared JavaScript logic for the project pages, handling the Lightbox (image modal) and gallery animations.
-*   `images/`: Stores local image assets.
+*   `style.css`: Styles specific to the landing page (`index.html`), including the hero animation, project cards, and the responsive contact section. (Formerly `homeCss.css`).
+*   `script.js`: JavaScript for the landing page, handling smooth scrolling and scroll-reveal animations for project cards and the contact section. (Formerly `homeJs.js`).
+*   `project1.html` / `project2.html`: Individual project detail pages. These now feature a modern **CSS Grid Mosaic layout** for image galleries.
+*   `projectStyle.css`: The stylesheet for the individual project pages (`project1.html`, `project2.html`), defining the new mosaic grid, lightbox styles, and general project page theme. (Formerly `style.css`).
+*   `projectScript.js`: Shared JavaScript logic for the project pages, handling the Lightbox (image modal) and scroll-reveal animations for gallery items. (Formerly `script.js`).
+*   `images/`: Stores **web-optimized WebP image assets** (compressed to <100KB, max 1920px on longest side). Original heavy PNGs have been replaced.
 *   `templetList.md`: A reference list of external resources for web templates.
+*   `run_server.py`: A Python script to easily run a local development server for the static site.
 
 ## Building and Running
 Since this is a static site, there is no build process.
 
-**To Run:**
-1.  Open `index.html` in any modern web browser to view the main portfolio.
-    *   *Example:* Double-click the file in your file explorer or run `xdg-open index.html` (Linux).
-2.  Navigate to specific projects by clicking "View Project" on the cards, or open `project1.html` / `project2.html` directly.
+**To Run Locally:**
+1.  Open a terminal in the project root directory.
+2.  Run the Python server: `python3 run_server.py`
+3.  Open `http://localhost:8000` in any modern web browser to view the main portfolio.
+4.  Navigate to specific projects by clicking "View Project" on the cards, or directly open `http://localhost:8000/project1.html` / `http://localhost:8000/project2.html`.
+
+**To Run on a Server (e.g., via Cloudflare Tunnel):**
+1.  Ensure Python3 is installed.
+2.  Clone the repository: `git clone https://github.com/looser-xxx/portFolio.git` (if not already done).
+3.  Navigate into the project directory: `cd portFolio`.
+4.  Start the Python server in the background: `nohup python3 run_server.py &`
+5.  Use a tunneling service (e.g., Cloudflare Tunnel) to expose port `8000` to the internet.
 
 ## Development Conventions
 
 ### HTML
 *   **Semantics:** Uses semantic tags like `<header>`, `<main>`, `<section>`, and `<footer>`.
-*   **Structure:** `index.html` serves as the hub, linking to detail pages.
-*   **Forms:** The contact form uses standard inputs and a textarea, styled for a premium feel.
+*   **Structure:** `index.html` serves as the hub, linking to detail pages. The "About" section has been removed. The Contact section no longer features a form, displaying only contact information and social links. Project detail pages (`project1.html`, `project2.html`) now include a "Back to Portfolio" navigation.
+*   **Forms:** The contact form has been removed.
+*   **Images:** Image sources have been updated to optimized `.webp` formats.
 
 ### CSS
 *   **Theme:** Dark mode default (`#0b0b0b` background) with Gold accents (`#d4af37`).
-*   **Files:** `homeCss.css` is for the landing page; `style.css` is for the gallery pages.
+*   **Fonts:** Uses **'Montserrat'** for a modern, premium, and readable aesthetic across the site.
+*   **Files:** `style.css` is for the landing page; `projectStyle.css` is for the gallery pages.
 *   **Layout:**
-    *   **Landing Page:** Uses Flexbox for the hero and Grid for the projects and contact sections. The contact section features a 2-column responsive layout.
-    *   **Gallery Pages:** Uses CSS Grid (`grid-template-columns: repeat(auto-fit, minmax(500px, 1fr))`) for the image layout.
-*   **Responsiveness:** Mobile-responsive adjustments are handled via `@media` queries (e.g., stacking grids on smaller screens).
+    *   **Landing Page (`index.html`):** Uses Flexbox for the hero and Grid for the projects. The contact section now features a centered, single-column layout for contact details and social icons.
+    *   **Gallery Pages (`project1.html`, `project2.html`):** Now utilize a **CSS Grid Mosaic layout** (`grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); grid-auto-rows: 500px; grid-auto-flow: dense;`) to display images with varying sizes (wide, tall, big) for a dynamic, professional feel. The container covers approximately 85% of the screen width.
+*   **Responsiveness:** Mobile-responsive adjustments are handled via `@media` queries (e.g., stacking grids on smaller screens for project galleries).
+*   **Interactivity:** Refined hover effects on buttons and gallery images (scaling zoom, no dimming). Social links use Font Awesome icons with hover effects.
 
 ### JavaScript
 *   **Execution:** All logic is wrapped in a `DOMContentLoaded` event listener.
-*   **Performance:** Uses `IntersectionObserver` for efficient scroll-based animations (fade-ups) on both the home page and gallery pages.
+*   **Performance:** Uses `IntersectionObserver` for efficient scroll-based animations (fade-ups) on the home page and individual gallery items.
 *   **Interactivity:**
     *   **Home:** Smooth scrolling anchor links and hover effects on cards/buttons.
-    *   **Gallery:** Custom Lightbox implementation for viewing full-size images.
+    *   **Gallery Pages:** Custom Lightbox implementation for viewing full-size images on click, with no overlay icon on hover.
