@@ -1,54 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    /* --- 1. LIGHTBOX FUNCTIONALITY --- */
-
-    // Create the lightbox element dynamically
-    const lightbox = document.createElement('div');
-    lightbox.id = 'lightbox';
-    document.body.appendChild(lightbox);
-
-    // Create the image element inside the lightbox
-    const lightboxImg = document.createElement('img');
-    lightbox.appendChild(lightboxImg);
-
-    // Select all images in the gallery
-    const images = document.querySelectorAll('.gallery-item img');
-
-    // Open Lightbox on Click
-    images.forEach(image => {
-        image.addEventListener('click', e => {
-            lightbox.classList.add('active');
-            lightboxImg.src = image.src;
+    
+    // Smooth Scroll for "View Work" button
+    const viewWorkBtn = document.querySelector('.btn-primary');
+    if(viewWorkBtn) {
+        viewWorkBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('#projects').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
         });
-    });
+    }
 
-    // Close Lightbox on Click (anywhere outside the image)
-    lightbox.addEventListener('click', e => {
-        if (e.target !== lightboxImg) {
-            lightbox.classList.remove('active');
-        }
-    });
-
-
-    /* --- 2. SCROLL ANIMATION --- */
-
-    // Config for the observer (start animation when 15% of item is visible)
+    // Scroll Reveal Animation for Project Cards
     const observerOptions = {
-        threshold: 0.15
+        threshold: 0.1
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Run animation only once
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Observe all gallery items
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach(item => {
-        observer.observe(item);
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach((card, index) => {
+        // Set initial state for animation in JS to avoid accessibility issues if JS fails
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(50px)';
+        card.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s, box-shadow 0.3s ease, border-color 0.3s ease`;
+        
+        observer.observe(card);
     });
+
+    // Observe Contact Section
+    const contactSection = document.querySelector('.contact-section');
+    if (contactSection) {
+        contactSection.style.opacity = '0';
+        contactSection.style.transform = 'translateY(30px)';
+        contactSection.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(contactSection);
+    }
 });
