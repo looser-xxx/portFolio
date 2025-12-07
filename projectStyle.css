@@ -190,15 +190,31 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 /* --- Responsive --- */
 @media (max-width: 900px) {
     .masonry-container {
-        column-count: 2;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-auto-rows: 300px;
     }
     .project-header h1 {
         font-size: 2.5rem;
+    }
+    /* Reset spans for smaller screens if they cause overflow */
+    .masonry-item.wide,
+    .masonry-item.tall,
+    .masonry-item.big {
+        grid-column: span 1;
+        grid-row: span 1;
     }
 }
 
 @media (max-width: 600px) {
     .masonry-container {
-        column-count: 1;
+        grid-template-columns: 1fr; /* Single column layout */
+        grid-auto-rows: 250px;
+    }
+    /* Ensure items don't try to span on a single column layout */
+    .masonry-item.wide,
+    .masonry-item.tall,
+    .masonry-item.big {
+        grid-column: auto;
+        grid-row: auto;
     }
 }
