@@ -23,10 +23,24 @@ a {
 
 /* --- Header --- */
 .main-header {
-    padding: 2rem 5%;
+    position: fixed; /* Sticky header */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1000;
+    transition: background 0.3s ease, padding 0.3s ease;
+}
+
+/* Scrolled state for header (added via JS) */
+.main-header.scrolled {
+    background: rgba(11, 11, 11, 0.9); /* Dark background */
+    backdrop-filter: blur(10px); /* Glassmorphism blur */
+    padding: 1rem 5%; /* Compact padding */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
 }
 
 .logo {
@@ -36,16 +50,41 @@ a {
     font-weight: 700;
     letter-spacing: -0.5px;
     text-transform: uppercase;
+    z-index: 1001; /* Above mobile menu */
 }
 
-nav ul {
+.nav-menu ul {
     display: flex;
     list-style: none;
     gap: 2rem;
 }
 
-nav a:hover {
+.nav-menu a {
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
     color: #d4af37;
+}
+
+/* Hamburger Menu (Hidden on Desktop) */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    z-index: 1001; /* Above mobile menu overlay */
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #e5e5e5;
+    transition: all 0.3s ease-in-out;
 }
 
 /* --- Hero Section --- */
@@ -198,6 +237,57 @@ nav a:hover {
     border-color: #d4af37; /* Maintain gold border */
 }
 
+/* --- Services Section --- */
+.services-section {
+    padding: 6rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #0e0e0e; /* Slightly lighter than body for separation */
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: #141414;
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 1px solid #222;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    border-color: #d4af37;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    color: #d4af37;
+    margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #e5e5e5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.service-card p {
+    font-size: 0.95rem;
+    color: #aaa;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
 /* --- Contact Section --- */
 .contact-section {
     padding: 6rem 5%;
@@ -312,5 +402,53 @@ footer {
     }
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+    
+    /* Mobile Navigation */
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%; /* Hidden off-screen to the left */
+        top: 0;
+        gap: 0;
+        flex-direction: column;
+        background-color: rgba(11, 11, 11, 0.95); /* High opacity dark */
+        backdrop-filter: blur(10px);
+        width: 100%;
+        height: 100vh; /* Full viewport height */
+        text-align: center;
+        transition: 0.3s;
+        display: flex; /* Flex to center items */
+        justify-content: center;
+        align-items: center;
+        z-index: 999; 
+    }
+
+    .nav-menu.active {
+        left: 0; /* Slide in from left */
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 3rem; /* Revert to larger gap for full screen */
+    }
+    
+    .nav-menu a {
+        font-size: 1.5rem; /* Larger text for full screen */
     }
 }
