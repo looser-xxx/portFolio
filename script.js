@@ -87,14 +87,27 @@ document.addEventListener('DOMContentLoaded', () => {
         navObserver.observe(section);
     });
 
-    // Smooth Scroll for "View Work" button
-    const viewWorkBtn = document.querySelector('.btn-primary');
+    // Smooth Scroll for Hero Buttons
+    const viewWorkBtn = document.getElementById('btn-work');
+    const viewShowreelBtn = document.getElementById('btn-showreel');
+
     if(viewWorkBtn) {
         viewWorkBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            document.querySelector('#projects').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
+            const projectsSection = document.querySelector('#projects');
+            if (projectsSection) {
+                projectsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+
+    if(viewShowreelBtn) {
+        viewShowreelBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const showreelSection = document.querySelector('#showreel');
+            if (showreelSection) {
+                showreelSection.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     }
 

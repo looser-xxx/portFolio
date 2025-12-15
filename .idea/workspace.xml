@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="66dc37d6-2ddd-463c-ba05-a00a9d0c3b18" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/GEMINI.md" beforeDir="false" afterPath="$PROJECT_DIR$/GEMINI.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project1.html" beforeDir="false" afterPath="$PROJECT_DIR$/project1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project2.html" beforeDir="false" afterPath="$PROJECT_DIR$/project2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/projectStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +69,7 @@
       <workItem from="1765042489218" duration="3037000" />
       <workItem from="1765094414997" duration="758000" />
       <workItem from="1765098232641" duration="1627000" />
+      <workItem from="1765352419004" duration="28000" />
     </task>
     <servers />
   </component>
