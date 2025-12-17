@@ -15,8 +15,8 @@
         <nav class="nav-menu">
             <ul>
                 <li><a href="#">Home</a></li>
-                <!-- <li><a href="#showreel">Showreel</a></li> -->
                 <li><a href="#projects">Work</a></li>
+                <li><a href="#showreel">Showreel</a></li>
                 <li><a href="#services">Capabilities</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -40,21 +40,10 @@
             <p>Crafting immersive digital experiences with a focus on luxury aesthetics and precision.</p>
             <div class="hero-buttons">
                 <button id="btn-work" class="btn-primary">View Work</button>
-                <!-- <button id="btn-showreel" class="btn-primary">View Showreel</button> -->
+                <button id="btn-showreel" class="btn-primary">View Showreel</button>
             </div>
         </div>
     </section>
-
-    <!-- Showreel Section -->
-    <!-- <section id="showreel" class="showreel-section">
-        <h2 class="section-title">Showreel</h2>
-        <div class="video-container">
-            <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <p>Vertical Video Placeholder</p>
-            </div>
-        </div>
-    </section> -->
 
     <!-- Projects Section -->
     <section id="projects" class="projects-section">
@@ -91,6 +80,37 @@
         
 
 
+        </div>
+    </section>
+
+    <!-- Showreel Section -->
+    <section id="showreel" class="showreel-section">
+        <h2 class="section-title">Showreel</h2>
+        <div class="video-container">
+            <video autoplay muted loop playsinline controls id="showreel-video">
+                <source src="videos/backGrounds/showReel.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="showreel-buttons-grid">
+            <input type="radio" id="showreel1" name="showreel_select" value="1" checked>
+            <label for="showreel1" class="custom-radio-label btn-secondary">Showreel 1</label>
+
+            <input type="radio" id="showreel2" name="showreel_select" value="2">
+            <label for="showreel2" class="custom-radio-label btn-secondary">Showreel 2</label>
+            
+            <input type="radio" id="showreel3" name="showreel_select" value="3">
+            <label for="showreel3" class="custom-radio-label btn-secondary">Showreel 3</label>
+            
+            <input type="radio" id="showreel4" name="showreel_select" value="4">
+            <label for="showreel4" class="custom-radio-label btn-secondary">Showreel 4</label>
+            
+            <input type="radio" id="showreel5" name="showreel_select" value="5">
+            <label for="showreel5" class="custom-radio-label btn-secondary">Showreel 5</label>
+            
+            <input type="radio" id="showreel6" name="showreel_select" value="6">
+            <label for="showreel6" class="custom-radio-label btn-secondary">Showreel 6</label>
         </div>
     </section>
 
