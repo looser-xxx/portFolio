@@ -11,6 +11,8 @@ This project is a static web portfolio designed to showcase creative work with a
 *   `projectStyle.css`: The stylesheet for the individual project pages (`project1.html`, `project2.html`), defining the new mosaic grid, lightbox styles, and general project page theme. (Formerly `style.css`).
 *   `projectScript.js`: Shared JavaScript logic for the project pages, handling the Lightbox (image modal) and scroll-reveal animations for gallery items. (Formerly `script.js`).
 *   `images/`: Stores **web-optimized WebP image assets** (compressed to <100KB, max 1920px on longest side). Original heavy PNGs have been replaced.
+*   `videos/`: Stores video assets.
+    *   `backGrounds/hero_bg.mp4`: Optimized H.264 background video for the hero section (transcoded from high-quality EXR sequence).
 *   `templetList.md`: A reference list of external resources for web templates.
 *   `run_server.py`: A Python script to easily run a local development server for the static site.
 
@@ -34,7 +36,7 @@ Since this is a static site, there is no build process.
 
 ### HTML
 *   **Semantics:** Uses semantic tags like `<header>`, `<main>`, `<section>`, and `<footer>`.
-*   **Structure:** `index.html` serves as the hub, linking to detail pages. The "About" section has been removed. The Contact section no longer features a form, displaying only contact information and social links. Project detail pages (`project1.html`, `project2.html`) now include a "Back to Portfolio" navigation.
+*   **Structure:** `index.html` serves as the hub, linking to detail pages. The "About" section has been removed. The "Showreel" section and its navigation link are currently **commented out** (disabled). The Contact section no longer features a form, displaying only contact information and social links. Project detail pages (`project1.html`, `project2.html`) now include a "Back to Portfolio" navigation.
 *   **Forms:** The contact form has been removed.
 *   **Images:** Image sources have been updated to optimized `.webp` formats.
 
