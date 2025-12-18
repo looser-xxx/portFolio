@@ -86,31 +86,36 @@
     <!-- Showreel Section -->
     <section id="showreel" class="showreel-section">
         <h2 class="section-title">Showreel</h2>
-        <div class="video-container">
-            <video autoplay muted loop playsinline controls id="showreel-video">
-                <source src="videos/backGrounds/showReel.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
 
         <div class="showreel-buttons-grid">
-            <input type="radio" id="showreel1" name="showreel_select" value="1" checked>
-            <label for="showreel1" class="custom-radio-label btn-secondary">Showreel 1</label>
+            <input type="radio" id="showreel_beauty" name="showreel_select" value="beauty" checked>
+            <label for="showreel_beauty" class="custom-radio-label btn-secondary">Beauty</label>
 
-            <input type="radio" id="showreel2" name="showreel_select" value="2">
-            <label for="showreel2" class="custom-radio-label btn-secondary">Showreel 2</label>
+            <input type="radio" id="showreel_ao" name="showreel_select" value="ambientOcclusion">
+            <label for="showreel_ao" class="custom-radio-label btn-secondary">Ambient Occlusion</label>
             
-            <input type="radio" id="showreel3" name="showreel_select" value="3">
-            <label for="showreel3" class="custom-radio-label btn-secondary">Showreel 3</label>
+            <input type="radio" id="showreel_viewport" name="showreel_select" value="viewPort">
+            <label for="showreel_viewport" class="custom-radio-label btn-secondary">Viewport</label>
             
-            <input type="radio" id="showreel4" name="showreel_select" value="4">
-            <label for="showreel4" class="custom-radio-label btn-secondary">Showreel 4</label>
+            <input type="radio" id="showreel_color" name="showreel_select" value="color">
+            <label for="showreel_color" class="custom-radio-label btn-secondary">Color</label>
             
-            <input type="radio" id="showreel5" name="showreel_select" value="5">
-            <label for="showreel5" class="custom-radio-label btn-secondary">Showreel 5</label>
+            <input type="radio" id="showreel_gloss" name="showreel_select" value="gloss">
+            <label for="showreel_gloss" class="custom-radio-label btn-secondary">Gloss</label>
             
-            <input type="radio" id="showreel6" name="showreel_select" value="6">
-            <label for="showreel6" class="custom-radio-label btn-secondary">Showreel 6</label>
+            <input type="radio" id="showreel_wireframe" name="showreel_select" value="wire">
+            <label for="showreel_wireframe" class="custom-radio-label btn-secondary">Wireframe</label>
+        </div>
+
+        <div class="video-container">
+            <video autoplay muted loop playsinline id="video-1" class="showreel-video active">
+                <source src="videos/showReel/beauty.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video muted loop playsinline id="video-2" class="showreel-video inactive">
+                <!-- Source will be set dynamically -->
+                Your browser does not support the video tag.
+            </video>
         </div>
     </section>
 

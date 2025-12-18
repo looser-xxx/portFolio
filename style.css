@@ -212,14 +212,28 @@ a {
     background: #000; /* Fallback background */
     border-radius: 4px; /* Slight rounding */
     overflow: hidden; /* Clean edges */
+    display: grid; /* Stack videos */
 }
 
-#showreel-video {
+.showreel-video {
     width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
-    max-height: 85vh; /* Optional: prevent it from being taller than the viewport */
+    max-height: 85vh;
+    grid-area: 1 / 1; /* Occupy same space */
+    transition: opacity 0.2s ease; /* Adjustable cross-dissolve duration */
+}
+
+.showreel-video.active {
+    opacity: 1;
+    z-index: 2; /* On top */
+}
+
+.showreel-video.inactive {
+    opacity: 0;
+    z-index: 1; /* Behind */
+    pointer-events: none; /* Prevent interaction with hidden video */
 }
 
 /* Responsive adjustment for video container */
@@ -233,7 +247,7 @@ a {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
-    margin-top: 4rem; /* Space between video and buttons */
+    margin-bottom: 3rem; /* Space between buttons and video */
     padding: 0 5%; /* Match section padding for buttons */
     justify-content: center;
     align-items: center;

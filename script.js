@@ -144,4 +144,101 @@ document.addEventListener('DOMContentLoaded', () => {
         contactSection.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         observer.observe(contactSection);
     }
+
+    // Showreel Video Switcher (Sequential Fade with Transition Lock)
+    const video1 = document.getElementById('video-1');
+    const video2 = document.getElementById('video-2');
+    const radioButtons = document.querySelectorAll('input[name="showreel_select"]');
+
+    let isTransitioning = false; // Flag to prevent rapid-fire glitches
+
+    if (video1 && video2 && radioButtons.length > 0) {
+        radioButtons.forEach(radio => {
+            radio.addEventListener('click', (e) => { // Use 'click' to intercept before 'change' if needed, or stick to 'change' but check flag
+                if (isTransitioning) {
+                    e.preventDefault(); // Prevent radio selection visually if locked
+                    return false;
+                }
+            });
+
+            radio.addEventListener('change', (e) => {
+                if (isTransitioning) {
+                    // Should be caught by click, but double check
+                    return; 
+                }
+
+                const videoName = e.target.value;
+                const newSource = `videos/showReel/${videoName}.mp4`;
+                
+                let activeVideo, inactiveVideo;
+                if (video1.classList.contains('active')) {
+                    activeVideo = video1;
+                    inactiveVideo = video2;
+                } else {
+                    activeVideo = video2;
+                    inactiveVideo = video1;
+                }
+
+                // If the selected source is already playing (rare edge case), do nothing
+                if (activeVideo.src.includes(newSource)) return;
+
+                isTransitioning = true; // Lock input
+
+                // Set new source and sync time
+                inactiveVideo.src = newSource;
+                
+                // Safe access to currentTime
+                if (activeVideo.readyState > 0) {
+                     inactiveVideo.currentTime = activeVideo.currentTime;
+                } else {
+                     inactiveVideo.currentTime = 0;
+                }
+                
+                // Load the inactive video
+                inactiveVideo.load();
+
+                // Wait for the inactive video to be ready to play
+                const onCanPlay = function() {
+                    inactiveVideo.removeEventListener('canplaythrough', onCanPlay); // Cleanup listener
+                    
+                    const playPromise = inactiveVideo.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            // 1. New video is playing. Fade it in.
+                            inactiveVideo.classList.remove('inactive');
+                            inactiveVideo.classList.add('active');
+
+                            // 2. After the new video has faded in (1s), fade out the old one.
+                            setTimeout(() => {
+                                activeVideo.classList.remove('active');
+                                activeVideo.classList.add('inactive');
+                                
+                                // 3. After the old video has faded out (1s), pause it and unlock.
+                                setTimeout(() => {
+                                    activeVideo.pause();
+                                    isTransitioning = false; // Unlock input
+                                                            }, 200); // Match fade-out duration
+                                
+                                                        }, 200); // Match fade-in duration
+                        }).catch(error => {
+                            console.log("Auto-play prevented:", error);
+                            // Fallback: reset state so user isn't locked out forever
+                            isTransitioning = false;
+                        });
+                    }
+                };
+
+                inactiveVideo.addEventListener('canplaythrough', onCanPlay);
+                
+                // Safety timeout: if video takes too long to load (e.g. network error), unlock.
+                setTimeout(() => {
+                    if(isTransitioning) {
+                        console.warn("Transition timeout - releasing lock");
+                        isTransitioning = false;
+                        inactiveVideo.removeEventListener('canplaythrough', onCanPlay);
+                    }
+                }, 5000); 
+            });
+        });
+    }
 });
