@@ -21,7 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const targetSection = document.querySelector(targetId);
                 if (targetSection) {
-                    targetSection.scrollIntoView({
+                    const headerHeight = document.querySelector('.main-header').offsetHeight;
+                    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20; // Added 20px offset
+                    
+                    window.scrollTo({
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
                 }
@@ -96,7 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const projectsSection = document.querySelector('#projects');
             if (projectsSection) {
-                projectsSection.scrollIntoView({ behavior: 'smooth' });
+                const headerHeight = document.querySelector('.main-header').offsetHeight;
+                const targetPosition = projectsSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
             }
         });
     }
@@ -106,7 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const showreelSection = document.querySelector('#showreel');
             if (showreelSection) {
-                showreelSection.scrollIntoView({ behavior: 'smooth' });
+                const headerHeight = document.querySelector('.main-header').offsetHeight;
+                const targetPosition = showreelSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
             }
         });
     }
