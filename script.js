@@ -115,6 +115,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const headerHeight = document.querySelector('.main-header').offsetHeight;
                 const targetPosition = showreelSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
                 window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+
+                // Auto-play and unmute when clicking the button
+                const showreelVideo = document.getElementById('showreel-video');
+                const btnMute = document.getElementById('btn-mute');
+                if (showreelVideo) {
+                    // Reset manual mute preference
+                    if (typeof userMuted !== 'undefined') {
+                        userMuted = false;
+                    }
+
+                    showreelVideo.muted = false;
+                    showreelVideo.play();
+                    
+                    // Update mute button UI
+                    if (btnMute) {
+                        btnMute.innerHTML = '<i class="fas fa-volume-up"></i>';
+                        btnMute.setAttribute('aria-label', 'Mute');
+                    }
+                }
             }
         });
     }
@@ -144,6 +163,139 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
     });
 
+    // Showreel Controls
+    const showreelVideo = document.getElementById('showreel-video');
+    const btnPlayPause = document.getElementById('btn-play-pause');
+    const btnMute = document.getElementById('btn-mute');
+    const btnFullscreen = document.getElementById('btn-fullscreen');
+
+    let userMuted = false; // Track manual mute state
+
+    if (showreelVideo && btnPlayPause && btnMute && btnFullscreen) {
+        
+        // Play/Pause Toggle
+        btnPlayPause.addEventListener('click', () => {
+            if (showreelVideo.paused) {
+                showreelVideo.play();
+                btnPlayPause.innerHTML = '<i class="fas fa-pause"></i>';
+                btnPlayPause.setAttribute('aria-label', 'Pause');
+            } else {
+                showreelVideo.pause();
+                btnPlayPause.innerHTML = '<i class="fas fa-play"></i>';
+                btnPlayPause.setAttribute('aria-label', 'Play');
+            }
+        });
+
+        // Mute/Unmute Toggle
+        btnMute.addEventListener('click', () => {
+            if (showreelVideo.muted) {
+                // User unmuting
+                userMuted = false;
+                fadeAudio(1, 500); 
+                btnMute.innerHTML = '<i class="fas fa-volume-up"></i>';
+                btnMute.setAttribute('aria-label', 'Mute');
+            } else {
+                // User muting
+                userMuted = true;
+                fadeAudio(0, 500);
+                btnMute.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                btnMute.setAttribute('aria-label', 'Unmute');
+            }
+        });
+
+        // Fullscreen Toggle
+        btnFullscreen.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                if (showreelVideo.requestFullscreen) {
+                    showreelVideo.requestFullscreen();
+                } else if (showreelVideo.mozRequestFullScreen) { // Firefox
+                    showreelVideo.mozRequestFullScreen();
+                } else if (showreelVideo.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                    showreelVideo.webkitRequestFullscreen();
+                } else if (showreelVideo.msRequestFullscreen) { // IE/Edge
+                    showreelVideo.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        });
+
+        // Update icons if video state changes externally (e.g. video ends)
+        showreelVideo.addEventListener('pause', () => {
+            btnPlayPause.innerHTML = '<i class="fas fa-play"></i>';
+            btnPlayPause.setAttribute('aria-label', 'Play');
+        });
+        
+        showreelVideo.addEventListener('play', () => {
+            btnPlayPause.innerHTML = '<i class="fas fa-pause"></i>';
+            btnPlayPause.setAttribute('aria-label', 'Pause');
+        });
+
+        // Helper: Audio Fade
+        let fadeInterval;
+        const fadeAudio = (targetVol, duration) => {
+            clearInterval(fadeInterval);
+            
+            // If starting from muted, set volume to 0 and unmute first
+            if (showreelVideo.muted && targetVol > 0) {
+                showreelVideo.volume = 0;
+                showreelVideo.muted = false;
+            }
+
+            const startVol = showreelVideo.volume;
+            const diff = targetVol - startVol;
+            const steps = 20;
+            const interval = duration / steps;
+            let step = 0;
+
+            fadeInterval = setInterval(() => {
+                step++;
+                let newVol = startVol + (diff * (step / steps));
+                newVol = Math.max(0, Math.min(1, newVol)); // Clamp
+                
+                showreelVideo.volume = newVol;
+
+                if (step >= steps) {
+                    clearInterval(fadeInterval);
+                    if (targetVol === 0) showreelVideo.muted = true;
+                }
+            }, interval);
+        };
+
+        // Auto-play/mute based on visibility
+        const showreelSection = document.getElementById('showreel');
+        if (showreelSection) {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Fade In only if not manually muted
+                        showreelVideo.play().catch(() => {});
+                        
+                        if (!userMuted) {
+                            fadeAudio(1, 1500); // 1.5s fade in
+                            if (btnMute) {
+                                btnMute.innerHTML = '<i class="fas fa-volume-up"></i>';
+                                btnMute.setAttribute('aria-label', 'Mute');
+                            }
+                        }
+                    } else {
+                        // Fade Out
+                        fadeAudio(0, 1000); // 1s fade out
+                        
+                        if (btnMute) {
+                            btnMute.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                            btnMute.setAttribute('aria-label', 'Unmute');
+                        }
+                    }
+                });
+            }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+            videoObserver.observe(showreelSection);
+        }
+    }
+
     // Observe Contact Section
     const contactSection = document.querySelector('.contact-section');
     if (contactSection) {
@@ -152,6 +304,4 @@ document.addEventListener('DOMContentLoaded', () => {
         contactSection.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         observer.observe(contactSection);
     }
-
-    // Showreel Video Switcher logic removed
 });

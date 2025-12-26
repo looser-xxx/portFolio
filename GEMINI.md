@@ -56,5 +56,5 @@ Since this is a static site, there is no build process.
 *   **Performance:** Uses `IntersectionObserver` for efficient scroll-based animations (fade-ups) on the home page and individual gallery items.
 *   **Interactivity:**
     *   **Home:** Smooth scrolling anchor links and hover effects on cards/buttons.
-    *   **Showreel:** Implements a custom sequential cross-fade video switcher. It uses two video elements (`#video-1`, `#video-2`) to seamlessly transition between render passes. Logic includes input locking (`isTransitioning`) to prevent glitches during rapid clicking and precise time synchronization (`currentTime`) to ensure all layers play in sync.
+    *   **Showreel:** Displays a single high-quality vertical showreel video (`videos/showReel/showReel.mp4`) within a stylized mobile-view container. The section features a blurred background video for depth and a smooth scroll-to behavior from the hero section.
     *   **Gallery Pages:** Custom Lightbox implementation for viewing full-size images on click, with no overlay icon on hover.

@@ -11,7 +11,7 @@
 
     <!-- Navigation -->
     <header class="main-header">
-        <div class="logo">Reality Studios</div>
+        <a href="index.html" class="logo home-link">Reality Studios</a>
         <nav class="nav-menu">
             <ul>
                 <li><a href="#">Home</a></li>
@@ -97,9 +97,19 @@
             <h2 class="section-title">Showreel</h2>
 
             <div class="vertical-video-wrapper">
-                <div class="vertical-video-placeholder">
-                    <span>Vertical Video</span>
-                </div>
+                <video autoplay muted loop playsinline class="showreel-video" id="showreel-video">
+                    <source src="videos/showReel/showReel.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="showreel-controls">
+                <button id="btn-play-pause" class="control-btn" aria-label="Pause"><i class="fas fa-pause"></i></button>
+                <button id="btn-mute" class="control-btn" aria-label="Unmute"><i class="fas fa-volume-mute"></i></button>
+                <button id="btn-fullscreen" class="control-btn" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+                <a href="https://www.youtube.com/" target="_blank" class="control-btn youtube-btn" aria-label="Watch on YouTube">
+                    <i class="fab fa-youtube"></i> <span>Watch on YouTube</span>
+                </a>
             </div>
         </div>
     </section>
