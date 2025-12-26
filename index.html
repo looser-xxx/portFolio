@@ -85,37 +85,22 @@
 
     <!-- Showreel Section -->
     <section id="showreel" class="showreel-section">
-        <h2 class="section-title">Showreel</h2>
-
-        <div class="showreel-buttons-grid">
-            <input type="radio" id="showreel_beauty" name="showreel_select" value="beauty" checked>
-            <label for="showreel_beauty" class="custom-radio-label btn-secondary">Beauty</label>
-
-            <input type="radio" id="showreel_ao" name="showreel_select" value="ambientOcclusion">
-            <label for="showreel_ao" class="custom-radio-label btn-secondary">Ambient Occlusion</label>
-            
-            <input type="radio" id="showreel_viewport" name="showreel_select" value="viewPort">
-            <label for="showreel_viewport" class="custom-radio-label btn-secondary">Viewport</label>
-            
-            <input type="radio" id="showreel_color" name="showreel_select" value="color">
-            <label for="showreel_color" class="custom-radio-label btn-secondary">Color</label>
-            
-            <input type="radio" id="showreel_gloss" name="showreel_select" value="gloss">
-            <label for="showreel_gloss" class="custom-radio-label btn-secondary">Gloss</label>
-            
-            <input type="radio" id="showreel_wireframe" name="showreel_select" value="wire">
-            <label for="showreel_wireframe" class="custom-radio-label btn-secondary">Wireframe</label>
+        <!-- Background Video -->
+        <div class="showreel-background">
+            <video autoplay muted loop playsinline class="bg-video">
+                <source src="videos/backGrounds/hero_bg.mp4" type="video/mp4">
+            </video>
+            <div class="bg-overlay"></div>
         </div>
 
-        <div class="video-container">
-            <video autoplay muted loop playsinline id="video-1" class="showreel-video active">
-                <source src="videos/showReel/beauty.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <video muted loop playsinline id="video-2" class="showreel-video inactive">
-                <!-- Source will be set dynamically -->
-                Your browser does not support the video tag.
-            </video>
+        <div class="showreel-content">
+            <h2 class="section-title">Showreel</h2>
+
+            <div class="vertical-video-wrapper">
+                <div class="vertical-video-placeholder">
+                    <span>Vertical Video</span>
+                </div>
+            </div>
         </div>
     </section>
 
