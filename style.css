@@ -13,6 +13,7 @@ body {
     background-color: #0b0b0b;
     color: #e5e5e5;
     line-height: 1.7;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 a {
@@ -23,19 +24,21 @@ a {
 
 /* --- Header --- */
 .main-header {
-    position: relative; /* Separated from hero */
+    position: absolute; /* Changed from relative to overlay hero */
+    top: 0;
+    left: 0;
     width: 100%;
     padding: 1.5rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    background-color: #0b0b0b; /* Solid background */
+    background-color: transparent; /* Changed to transparent */
 }
 
-/* Scrolled state can remain but is less critical if relative */
+/* Scrolled state */
 .main-header.scrolled {
-    position: fixed; /* Stick to top on scroll if desired, or keep relative */
+    position: fixed;
     top: 0;
     left: 0;
     background: rgba(11, 11, 11, 0.95);
@@ -98,17 +101,26 @@ a {
 .hero {
     position: relative;
     width: 100%;
-    height: auto; /* Adapts to video height */
+    height: 100vh; /* Fixed viewport height */
+    min-height: 600px; /* Ensure it doesn't get too short */
     overflow: hidden;
     background: #0b0b0b;
+    display: flex; /* Flexbox for robust centering */
+    align-items: center;
+    justify-content: center;
 }
 
 #hero-video {
-    position: relative; /* Part of the flow */
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain; /* Ensures full video is visible */
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: translate(-50%, -50%);
     z-index: 0;
 }
 
@@ -123,17 +135,14 @@ a {
 }
 
 .hero-content {
-    position: absolute; /* Centered over the video */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative; /* Relative to participate in Flexbox flow */
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     text-align: center;
-    padding: 0 20px;
+    padding: 80px 20px; /* Add vertical padding to prevent edge touching */
 }
 
 .hero h1 {
@@ -575,9 +584,32 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
+    .hero-content {
+        padding: 40px 20px;
     }
+
+    .hero h1 {
+        font-size: 2.5rem; /* Reduced from 4.5rem */
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+        gap: 15px;
+        flex-direction: column; /* Stack buttons on mobile */
+        width: 100%;
+        align-items: center;
+    }
+
+    .btn-primary {
+        width: 100%; /* Full width buttons for easier tapping */
+        max-width: 280px;
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
     }

@@ -167,11 +167,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const showreelVideo = document.getElementById('showreel-video');
     const btnPlayPause = document.getElementById('btn-play-pause');
     const btnMute = document.getElementById('btn-mute');
-    const btnFullscreen = document.getElementById('btn-fullscreen');
+    const youtubeBtn = document.querySelector('.youtube-btn');
 
     let userMuted = false; // Track manual mute state
 
-    if (showreelVideo && btnPlayPause && btnMute && btnFullscreen) {
+    if (showreelVideo && btnPlayPause && btnMute) {
+        
+        // Pause and Mute when opening YouTube link
+        if (youtubeBtn) {
+            youtubeBtn.addEventListener('click', () => {
+                showreelVideo.pause();
+                userMuted = true;
+                showreelVideo.muted = true;
+                showreelVideo.volume = 0;
+                
+                // Update UI
+                btnPlayPause.innerHTML = '<i class="fas fa-play"></i>';
+                btnMute.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                btnMute.setAttribute('aria-label', 'Unmute');
+            });
+        }
         
         // Play/Pause Toggle
         btnPlayPause.addEventListener('click', () => {
@@ -200,25 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 fadeAudio(0, 500);
                 btnMute.innerHTML = '<i class="fas fa-volume-mute"></i>';
                 btnMute.setAttribute('aria-label', 'Unmute');
-            }
-        });
-
-        // Fullscreen Toggle
-        btnFullscreen.addEventListener('click', () => {
-            if (!document.fullscreenElement) {
-                if (showreelVideo.requestFullscreen) {
-                    showreelVideo.requestFullscreen();
-                } else if (showreelVideo.mozRequestFullScreen) { // Firefox
-                    showreelVideo.mozRequestFullScreen();
-                } else if (showreelVideo.webkitRequestFullscreen) { // Chrome, Safari and Opera
-                    showreelVideo.webkitRequestFullscreen();
-                } else if (showreelVideo.msRequestFullscreen) { // IE/Edge
-                    showreelVideo.msRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
             }
         });
 
