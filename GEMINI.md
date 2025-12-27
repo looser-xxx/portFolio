@@ -10,9 +10,12 @@ This project is a static web portfolio designed to showcase creative work with a
     *   Smooth scrolling and scroll-reveal animations.
     *   **Smart Showreel Logic:** Auto-play/mute on scroll, audio cross-fading, and interaction with custom controls.
     *   **YouTube Integration:** Logic to pause/mute local video when the external YouTube link is clicked.
-*   `project1.html` / `project2.html`: Individual project detail pages featuring a modern **CSS Grid Mosaic layout** for image galleries.
-*   `projectStyle.css`: Stylesheet for individual project pages (`project1.html`, `project2.html`), defining the mosaic grid and lightbox themes.
+*   `project1.html` / `project2.html`: Individual project detail pages featuring a modern **CSS Grid Mosaic layout** for image galleries. **Note:** These pages share a similar structure and the same stylesheet (`projectStyle.css`); modifications to one should generally be mirrored in the other to maintain consistency.
+*   `project3.html`: **Platinum Series** project page. Features a distinct, seamless **Instagram-style grid** layout. This page is auto-generated via scripts.
+*   `projectStyle.css`: Stylesheet for individual project pages. Contains specific overrides for the Platinum Series seamless grid (`.masonry-container.three-col`).
 *   `projectScript.js`: Shared logic for project pages, primarily handling the Lightbox (image modal) and scroll animations.
+*   `scripts/`: Contains Python automation scripts.
+    *   `generate_gallery.py`: Generates the `project3.html` file, handling image ordering, layout structure, and sticky navigation injection.
 *   `images/`: Stores **web-optimized WebP image assets**.
 *   `videos/`: Stores highly optimized video assets in dual formats for maximum compatibility and performance.
     *   `backGrounds/`:

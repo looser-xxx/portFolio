@@ -7,7 +7,7 @@
     --text-main: #e5e5e5;
     --text-muted: #888;
     --accent-gold: #d4af37;
-    --gap-size: 1.5rem;
+    --gap-size: 2.5rem; /* Increased gap for better spacing */
     --radius: 8px;
 }
 
@@ -48,11 +48,20 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 
 /* --- Header --- */
 .project-header {
-    padding: 2rem 5% 4rem 5%;
-    text-align: center;
-    max-width: 700px;
+    padding: 2rem 15% 4rem 15%; /* Adjusted padding for better alignment with grid */
+    max-width: 100%; /* Allow full width */
     margin: 0 auto;
     animation: fadeInDown 0.8s ease-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    text-align: left; /* Left align text */
+}
+
+.header-content {
+    flex: 1;
+    max-width: 800px;
 }
 
 .project-header h1 {
@@ -70,14 +79,54 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     line-height: 1.8;
 }
 
+.project-header .btn-primary {
+    /* Re-using btn-primary styles but ensuring specific fit here */
+    padding: 14px 28px;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Prevent button text wrapping */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px; /* Visual balance with title */
+}
+
+.project-header .btn-primary:hover {
+    background: #d4af37;
+    color: #0b0b0b;
+}
+
+/* Responsive Header */
+@media (max-width: 900px) {
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 2rem 5%;
+    }
+    
+    .project-header .btn-primary {
+        margin-top: 0;
+    }
+}
+
 /* --- Masonry Layout (CSS Grid Mosaic) --- */
 .masonry-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); /* Increased base column size for larger images */
-    grid-auto-rows: 500px; /* Increased base row height for larger images */
-    grid-auto-flow: dense; /* Fills gaps automatically */
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
+    grid-auto-rows: 400px; 
+    grid-auto-flow: dense; 
     gap: var(--gap-size);
-    padding: 0 7.5% 4rem 7.5%; /* Wider padding for 85% width */
+    width: 70%; /* Constrain to 70% of viewport */
+    padding: 0 0 4rem 0; 
     margin: 0 auto;
 }
 
@@ -87,9 +136,11 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     overflow: hidden;
     position: relative;
     cursor: pointer;
+    padding: 0; /* Removed padding */
     opacity: 0;
     transform: translateY(30px);
     transition: transform 0.3s ease, opacity 0.6s ease;
+    border: none; /* Removed border */
 }
 
 /* Size Modifiers */
@@ -188,8 +239,18 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 }
 
 /* --- Responsive --- */
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
     .masonry-container {
+        width: 85%; /* Slightly wider on laptops */
+    }
+}
+
+@media (max-width: 900px) {
+    :root {
+        --gap-size: 1.5rem; /* Smaller gap on tablets */
+    }
+    .masonry-container {
+        width: 95%; /* Almost full width on tablets */
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         grid-auto-rows: 300px;
     }
@@ -206,6 +267,9 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 }
 
 @media (max-width: 600px) {
+    :root {
+        --gap-size: 1rem; /* Compact gap on mobile */
+    }
     .masonry-container {
         grid-template-columns: 1fr; /* Single column layout */
         grid-auto-rows: 250px;
