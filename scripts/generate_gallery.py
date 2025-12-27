@@ -10,6 +10,9 @@ except FileNotFoundError:
 
 rows = [images[i:i + 3] for i in range(0, len(images), 3)]
 
+# Move rows 1-8 (indices 0-7) to the bottom, starting from row 9 (index 8)
+rows = rows[8:] + rows[:8]
+
 reordered_images = []
 for row in rows:
     reordered_images.extend(reversed(row))
