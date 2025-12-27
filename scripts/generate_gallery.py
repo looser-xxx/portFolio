@@ -72,7 +72,7 @@ html_head = """<!DOCTYPE html>
     <header class="project-header">
         <div class="header-content">
             <h1>Platinum Series</h1>
-            <p>A study in high-contrast chiaroscuro lighting and advanced shader work. This series emphasizes the raw elegance of metallic textures through precise rim lighting and cinematic atmospheric depth.</p>
+            <p>Employing high-contrast chiaroscuro lighting and procedural shader development, this series captures the raw elegance of metallic textures. Our methodology prioritized precise rim lighting and atmospheric depth to enhance visual impact. The final imagery demonstrates technical excellence in rendering metallic surfaces with cinematic quality.</p>
         </div>
     </header>
 
