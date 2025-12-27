@@ -23,15 +23,6 @@ html_head = """<!DOCTYPE html>
     <link rel="stylesheet" href="projectStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .back-nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: transparent;
-            padding: 1rem 5% !important;
-            border: none !important;
-        }
-
         .masonry-container.three-col {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -75,13 +66,11 @@ html_head = """<!DOCTYPE html>
 </head>
 <body>
 
-    <nav class="back-nav">
-        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
-    </nav>
-
     <header class="project-header">
-        <h1>Platinum Series</h1>
-        <p>A study in high-contrast chiaroscuro lighting and advanced shader work. This series emphasizes the raw elegance of metallic textures through precise rim lighting and cinematic atmospheric depth.</p>
+        <div class="header-content">
+            <h1>Platinum Series</h1>
+            <p>A study in high-contrast chiaroscuro lighting and advanced shader work. This series emphasizes the raw elegance of metallic textures through precise rim lighting and cinematic atmospheric depth.</p>
+        </div>
     </header>
 
     <main class="masonry-container three-col">
@@ -89,10 +78,6 @@ html_head = """<!DOCTYPE html>
 
 html_footer = """
     </main>
-
-    <footer class="project-footer">
-        <p>&copy; 2025 Reality Studios</p>
-    </footer>
 
     <script src="projectScript.js"></script>
 </body>

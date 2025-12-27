@@ -300,4 +300,78 @@ document.addEventListener('DOMContentLoaded', () => {
         contactSection.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         observer.observe(contactSection);
     }
+
+    /* --- Project Modal Logic --- */
+    const projectModal = document.getElementById('project-modal');
+    const projectFrame = document.getElementById('project-frame');
+    const modalCloseBtn = document.querySelector('.modal-close');
+    const projectLinks = document.querySelectorAll('.project-card a');
+
+    if (projectModal && projectFrame) {
+        
+        // Open Modal
+        projectLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                
+                // Only intercept internal project links
+                if (href && !href.startsWith('http') && href.endsWith('.html')) {
+                    e.preventDefault();
+                    
+                    // Set iframe source
+                    projectFrame.src = href;
+                    
+                    // Show modal
+                    projectModal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Disable background scroll
+
+                    // Hide "Back to Portfolio" nav inside iframe once loaded
+                    projectFrame.onload = () => {
+                        try {
+                            const frameDoc = projectFrame.contentDocument || projectFrame.contentWindow.document;
+                            const backNav = frameDoc.querySelector('.back-nav');
+                            if (backNav) {
+                                backNav.style.display = 'none';
+                            }
+                            
+                            // Also ensure iframe body doesn't double scroll weirdly if possible
+                            // frameDoc.body.style.overflowX = 'hidden';
+                        } catch (err) {
+                            console.log('Cannot access iframe content (likely cross-origin restriction if not local):', err);
+                        }
+                    };
+                }
+            });
+        });
+
+        // Close Modal Function
+        const closeModal = () => {
+            projectModal.classList.remove('active');
+            document.body.style.overflow = ''; // Re-enable background scroll
+            
+            // Clear src after transition to stop video/audio playing
+            setTimeout(() => {
+                projectFrame.src = '';
+            }, 400); 
+        };
+
+        // Close Event Listeners
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', closeModal);
+        }
+
+        // Close when clicking outside the modal content
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) {
+                closeModal();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
 });
