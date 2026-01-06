@@ -12,6 +12,9 @@ This project is a static web portfolio designed to showcase creative work with a
     *   **YouTube Integration:** Logic to pause/mute local video when the external YouTube link is clicked.
 *   `project1.html` / `project2.html`: Individual project detail pages featuring a modern **CSS Grid Mosaic layout** for image galleries. **Note:** These pages share a similar structure and the same stylesheet (`projectStyle.css`); modifications to one should generally be mirrored in the other to maintain consistency.
 *   `project3.html`: **Platinum Series** project page. Features a distinct, seamless **Instagram-style grid** layout. This page is auto-generated via scripts.
+*   `brandWorks.html`: **Private Portfolio Page.** A separate page featuring a 3x3 video grid of brand works in 9:16 vertical format.
+    *   **One-Way Access:** This page is intentionally isolated; `index.html` does **not** link to it. Users must have the direct link to access it, but can return to the homepage via "Back to Homepage" buttons.
+    *   `brandWorks.css`: Dedicated styles for this page, maintaining the dark/gold theme but with specific grid layouts (69vw width).
 *   `projectStyle.css`: Stylesheet for individual project pages. Contains specific overrides for the Platinum Series seamless grid (`.masonry-container.three-col`).
 *   `projectScript.js`: Shared logic for project pages, primarily handling the Lightbox (image modal) and scroll animations.
 *   `scripts/`: Contains Python automation scripts.

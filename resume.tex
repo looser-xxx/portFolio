@@ -1,0 +1,112 @@
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+% ModernCV themes
+\moderncvstyle{classic} 
+\moderncvcolor{orange} 
+
+% Character encoding
+\usepackage[english]{babel}
+\usepackage[scale=0.75]{geometry}
+\usepackage{fontawesome5} % Ensure icons are available
+
+% Colorize links - Wrapped in AtBeginDocument to prevent errors
+\AtBeginDocument{
+    \hypersetup{colorlinks=true, allcolors=orange, urlcolor=orange, linkcolor=orange}
+}
+
+% --- PERSONAL DATA ---
+\name{Suprabhat}{Maurya}
+\title{Lead 3D Artist | Motion Graphics Specialist} 
+\address{India}{}{} 
+\phone[mobile]{+91~8252712554} 
+\email{itismaurya4769@gmail.com}
+
+% Consolidating links in extrainfo to control order and icons
+% Explicitly wrapping text in \textcolor{orange} to guarantee visibility
+\extrainfo{%
+    \faGlobe~\href{https://looser-xxx.github.io/portFolio/index.html}{\textcolor{orange}{Portfolio Website}}\\[0.2em]
+    \faInstagram~\href{https://www.instagram.com/reality_VFX}{\textcolor{orange}{reality\_VFX}}\\[0.2em]
+    \faGithub~\href{https://github.com/looser-xxx}{\textcolor{orange}{looser-xxx}}%
+}
+
+%----------------------------------------------------------------------------------
+%            CONTENT
+%----------------------------------------------------------------------------------
+\begin{document}
+\makecvtitle
+
+\section{Summary}
+\cvitem{}{Accomplished Lead 3D Artist and Motion Graphics Specialist with extensive experience in advertising and technology sectors. Expert in \textbf{3D Animation} and \textbf{Cinematic Lighting} (USP), with a strong technical command of Blender Geometry Nodes. Pioneer in creating anamorphic 3D billboard content in India. Proven ability to manage end-to-end production pipelines—from VFX supervision and server management to final compositing—delivering high-quality visual content for major clients.}
+
+\section{Technical Skills}
+\cvitem{3D Animation}{Blender (Expert), 3D Animation, \textbf{Cinematic Lighting}, Procedural Texturing, Geometry Nodes (Advanced), Basic Modeling, Rendering.}
+\cvitem{Compositing}{After Effects, Nuke, Color Grading, Sound Design.}
+\cvitem{Infrastructure}{Render Farm Management, NAS Server Administration, Pipeline Optimization.}
+\cvitem{Automation}{Python (Scripting for automation).}
+
+% Link to main portfolio in the section title
+\section{Projects \ \small\mdseries\href{https://looser-xxx.github.io/portFolio/index.html}{\color{orange}[View Full Portfolio]}}
+
+\cventry{Project 1}{Platinum Series}{\href{https://looser-xxx.github.io/portFolio/project3.html}{\textbf{\textcolor{orange}{View Project}}}}{}{}{
+\begin{itemize}
+    \item Spearheaded a visual research initiative focusing on high-contrast \textbf{chiaroscuro lighting} and advanced shader architecture.
+    \item Engineered complex metallic material systems and utilized precise rim lighting techniques to achieve cinematic atmospheric depth and photorealism.
+    \item Collaborated with a graphic designer to integrate typography and layout elements, while retaining full technical ownership of the 3D pipeline and final render quality.
+\end{itemize}
+}
+
+\cventry{Project 2}{Aurum Series}{\href{https://looser-xxx.github.io/portFolio/project1.html}{\textbf{\textcolor{orange}{View Project}}}}{}{}{
+\begin{itemize}
+    \item Created a photorealistic product visualization exploring gold-plated titanium, utilizing advanced ray-tracing and procedural shading in Blender.
+    \item Implemented a custom lighting setup to accentuate micro-details and texture, achieving tangible realism for high-end digital craftsmanship.
+\end{itemize}
+}
+
+\cventry{Project 3}{Void Optics}{\href{https://looser-xxx.github.io/portFolio/project2.html}{\textbf{\textcolor{orange}{View Project}}}}{}{}{
+\begin{itemize}
+    \item Executed a monochromatic visualization study focusing on structural elegance and the physics of reflection.
+    \item Utilized a chiaroscuro lighting technique to sculpt fluid geometry from darkness, highlighting flawless topology without the reliance on color data.
+\end{itemize}
+}
+
+\newpage
+
+\section{Experience}
+
+\cventry{2023--Present}{Lead 3D Artist, Motion Graphics Lead \& Editor}{Postport}{Marketing Agency}{}{
+\begin{itemize}
+    \item Held full ownership of the Motion Graphics department, serving as the sole resource for the creation and delivery of all motion-related projects for the agency's diverse clientele.
+    \item Managed end-to-end 3D production pipelines: functioned as \textbf{VFX Supervisor} on shoots, directed animation, lighting, rendering, and compositing.
+    \item Handled post-production duties including advanced video editing, color grading, and sound design.
+    \item Optimized workflow efficiency by automating tasks using Python.
+\end{itemize}
+}
+
+\cventry{2023}{Lead 3D Artist}{Sketch Holographics}{Tech Startup}{}{
+\begin{itemize}
+    \item Served as one of the first artists in India to design and execute \textbf{Anamorphic 3D Billboard animations}.
+    \item Managed the company's Experience Center, utilizing large-format screens to test and refine depth perception and 3D visual effects for public display.
+    \item Collaborated with hardware teams to ensure content compatibility with holographic and large-scale display technologies.
+\end{itemize}
+}
+
+\cventry{2022--2023}{Lead 3D Artist}{Satra Productions}{Advertising Agency}{}{
+\begin{itemize}
+    \item Led the 3D art team in creating engaging visual content for advertising campaigns.
+    \item Responsible for concept development, layout, and final rendering of commercial assets.
+\end{itemize}
+}
+
+\cventry{2019--2022}{Freelance Video Editor + 3D Artist}{YouTube Creators}{Remote}{}{
+\begin{itemize}
+    \item Edited high-retention video content for YouTubers with subscriber bases exceeding \textbf{800k}.
+    \item Integrated custom 3D motion graphics and visual effects using Blender to enhance narrative flow and significantly boost audience engagement.
+    \item Coordinated and managed the workflow for a small team of 3–4 freelance editors, ensuring consistent quality and timely delivery across all projects.
+\end{itemize}
+}
+
+\section{Infrastructure \& Management}
+\cvitem{Render Farm}{Owner and operator of a personal render farm; experienced in hardware maintenance, network rendering, and queue management.}
+\cvitem{Server Admin}{Built and maintained a NAS server environment to ensure data integrity and high-speed asset access for production workflows.}
+
+\end{document}
