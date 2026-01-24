@@ -352,6 +352,12 @@ a {
     gap: 40px;
 }
 
+.projects-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
 .project-card {
     background: #141414;
     border-radius: 0; /* Sharper edges for simplicity */
