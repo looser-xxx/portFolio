@@ -407,4 +407,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    /* --- Basic Anti-Inspection Deterrent --- */
+    // Disable Right Click
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    // Disable Common DevTool Shortcuts
+    document.addEventListener('keydown', (e) => {
+        // F12
+        if (e.key === 'F12') {
+            e.preventDefault();
+        }
+        // Ctrl+Shift+I (Inspect) or Ctrl+Shift+J (Console) or Ctrl+Shift+C (Element Selector)
+        if (e.ctrlKey && e.shiftKey && (['I', 'J', 'C'].includes(e.key.toUpperCase()))) {
+            e.preventDefault();
+        }
+        // Ctrl+U (View Source)
+        if (e.ctrlKey && e.key.toUpperCase() === 'U') {
+            e.preventDefault();
+        }
+    });
 });
