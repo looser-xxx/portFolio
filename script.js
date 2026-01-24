@@ -374,4 +374,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    /* --- Lazy Load Videos (Brand Works) --- */
+    const lazyVideoContainers = document.querySelectorAll('.lazy-video-container');
+    
+    lazyVideoContainers.forEach(container => {
+        container.addEventListener('click', function() {
+            const video = this.querySelector('video');
+            const source = video.querySelector('source');
+            const overlay = this.querySelector('.play-overlay');
+
+            if (video && source && source.hasAttribute('data-src')) {
+                // Set the source
+                source.src = source.getAttribute('data-src');
+                source.removeAttribute('data-src');
+                
+                // Load and play
+                video.load();
+                video.play();
+                
+                // Update UI
+                video.setAttribute('controls', 'true');
+                this.classList.add('playing');
+                
+                // Remove overlay explicitly if CSS doesn't handle it
+                if (overlay) overlay.style.display = 'none';
+            } else if (video && video.paused) {
+                // If already loaded but paused, play it
+                video.play();
+                this.classList.add('playing');
+                if (overlay) overlay.style.display = 'none';
+            }
+        });
+    });
 });
