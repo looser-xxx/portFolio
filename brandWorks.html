@@ -4,16 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand Works</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="brandWorks.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="top-nav">
-        <a href="index.html" class="back-btn">← Back to Homepage</a>
-    </nav>
-    <header>
-        <h1>Brand Works</h1>
+    <header class="main-header">
+        <a href="index.html" class="logo home-link">Reality Studios</a>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Works</a></li>
+                <li><a href="index.html#showreel">Showreel</a></li>
+                <li><a href="index.html#services">Capabilities</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
     </header>
-    <main>
+
+    <main style="padding-top: 150px;">
+        <h1 style="text-align: center; color: #d4af37; text-transform: uppercase; font-weight: 300; letter-spacing: 2px; margin-bottom: 3rem;">CGI Motion Campaigns</h1>
         <div class="video-grid">
             <!-- Video 1 -->
             <div class="video-item">
@@ -88,8 +103,7 @@
             </div>
         </div>
     </main>
-    <footer class="bottom-nav">
-        <a href="index.html" class="back-btn">← Back to Homepage</a>
-    </footer>
+    
+    <script src="script.js"></script>
 </body>
 </html>
