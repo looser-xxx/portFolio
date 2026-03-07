@@ -74,6 +74,14 @@ main {
     gap: 1.5rem; /* Reduced gap to bring items closer */
 }
 
+.featured-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: stretch;
+}
+
 .video-item {
     position: relative;
     width: 88%; /* Adjusted width */
@@ -85,6 +93,20 @@ main {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     transition: transform 0.3s ease;
     cursor: pointer; /* Indicate clickable */
+}
+
+.video-item.horizontal {
+    grid-column: span 2;
+    width: 100%;
+    aspect-ratio: auto; /* Stretch to match height of vertical item */
+    height: 100%;
+    margin: 0;
+}
+
+.video-item.vertical {
+    grid-column: span 1;
+    width: 88%; /* Match standard grid width */
+    height: 100%;
 }
 
 .video-item:hover {
@@ -141,10 +163,18 @@ video {
 }
 
 @media (max-width: 768px) {
-    .video-grid {
+    .video-grid, .featured-row {
         grid-template-columns: 1fr;
     }
-    
+
+    .video-item.horizontal, .video-item.vertical {
+        grid-column: span 1;
+        width: 88%;
+        aspect-ratio: 9 / 16;
+        margin: 0 auto;
+        height: auto;
+    }
+
     header h1 {
         font-size: 2rem;
     }
