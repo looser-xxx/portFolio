@@ -115,6 +115,10 @@ body {
     transform: translateY(30px);
 }
 
+.no-lightbox .media-item {
+    cursor: default;
+}
+
 .media-item img {
     width: 100%;
     height: 100%;

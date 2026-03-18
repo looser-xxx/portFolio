@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Open Lightbox
     items.forEach(item => {
         item.addEventListener('click', () => {
+            if (document.body.classList.contains('no-lightbox')) return;
+            
             const img = item.querySelector('img');
             if (img) {
                 lightboxImg.src = img.src;
