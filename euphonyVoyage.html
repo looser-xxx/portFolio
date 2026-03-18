@@ -31,16 +31,89 @@
             </video>
         </section>
 
-        <!-- 9:16 Posters Grid -->
-        <section class="poster-grid">
-            <div class="media-item poster-9-16">
-                <img src="projects/euphonyVoyage/images/posters/seedhe%20Maut_9x16.jpg.jpeg" alt="Seedhe Maut Poster">
+        <!-- Procedural Content Breakdown -->
+        <h2 class="section-title">Procedural Forest Orchestration</h2>
+        <p class="section-description">Utilizing Geometry Nodes for large-scale environment orchestration. To manage the immense geometrical density of the forest, we implemented a robust instancing system where trees are scattered across a procedurally generated landscape—itself displaced via noise-based functions within the node tree. A collection of high-fidelity forest assets is sampled using randomized seeds to ensure natural variety, allowing for the rendering of vast, complex ecosystems that would otherwise exceed hardware memory constraints.</p>
+        <div class="grid-2">
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/geoMateryNodes/a_forest/a_Geo.png" alt="Forest Geometry Nodes">
             </div>
-            <div class="media-item poster-9-16">
-                <img src="projects/euphonyVoyage/images/posters/shreya%209x16.jpg.jpeg" alt="Shreya Ghoshal Poster">
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/geoMateryNodes/a_forest/a_Rend.png" alt="Forest Render">
             </div>
-        </section>
+        </div>
 
+        <h2 class="section-title">Procedural Crowd Simulation</h2>
+        <p class="section-description">Advanced population management utilizing point-cloud distribution and randomized instance sampling. The system leverages procedural logic to manage high-density character populations, transitioning from low-poly proxies during simulation to full-detail PBR character assets at render time. Each instance is assigned unique behavioral parameters and visual variations to maintain visual complexity across the stadium-scale environment while maintaining optimized viewport performance.</p>
+        <div class="grid-2">
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/geoMateryNodes/b_crowd/b_Geo.png" alt="Crowd Geometry">
+            </div>
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/geoMateryNodes/b_crowd/b_Rand.png" alt="Crowd Render">
+            </div>
+        </div>
+
+        <h2 class="section-title">Dynamic Environment Culling Logic</h2>
+        <p class="section-description">Technical viewport and render optimization through camera-aware instance management. To facilitate the rendering of ultra-large-scale environments, we developed a system where instances are dynamically created and destroyed every frame based on the camera's field of view (frustum). A random distribution map is generated and then subtracted based on the camera's orientation; instances are only instantiated in the active viewing area, significantly reducing draw calls and memory overhead during the final render sequence.</p>
+        <div class="grid-2">
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/geoMateryNodes/c_environment/c_Geo.png" alt="Environment Geometry">
+            </div>
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/geoMateryNodes/c_environment/c_Rand.png" alt="Environment Render">
+            </div>
+        </div>
+
+        <!-- AI Workflow -->
+        <h2 class="section-title">Hybrid AI-Asset Pipeline</h2>
+        <p class="section-description">Integration of ComfyUI for accelerated look-development and rapid asset iteration. This advanced workflow leverages custom node-based AI graphs to generate procedural HDRIs, high-resolution PBR texture maps, and initial mesh base-forms. By bridging AI-driven generation with traditional 3D DCCs, we significantly compressed the pre-production timeline while maintaining strict art direction and technical fidelity for the final VFX assets.</p>
+        <div class="grid-3">
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/comfyUiSetUp/meshGenration.png" alt="AI Mesh Generation">
+            </div>
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/comfyUiSetUp/hdriGenration.png" alt="AI HDRI Generation">
+            </div>
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/comfyUiSetUp/textureUpscaller.png" alt="AI Texture Upscaling">
+            </div>
+        </div>
+
+        <!-- Asset Showcase -->
+        <h2 class="section-title">Hero Asset: Biological Sculpting</h2>
+        <p class="section-description">Anatomical breakdown of the primary creature asset. This high-fidelity model utilized multi-channel UDIM workflows to support extreme 8K cinematic close-ups. The PBR material stack incorporates custom subsurface scattering (SSS) maps and micro-displacement layers, meticulously supervised to ensure the creature maintains visual integrity across diverse lighting environments.</p>
+        <div class="grid-3">
+            <div class="media-item aspect-1-1">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/dragon/fullDragon.png" alt="Dragon Full View">
+            </div>
+            <div class="media-item aspect-1-1">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/dragon/texture.png" alt="Dragon Texture Details">
+            </div>
+            <div class="media-item aspect-1-1">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/dragon/closeUp.png" alt="Dragon Head Close-up">
+            </div>
+        </div>
+
+        <!-- Lighting Passes -->
+        <h2 class="section-title">Compositing: Lighting Validation Passes</h2>
+        <p class="section-description">Linear workflow validation via Ambient Occlusion (AO) passes. These renders serve as the foundational 'grounding' layer during the compositing phase, isolating contact shadows and micro-shadowing. This rigorous technical pass is essential for ensuring the seamless integration of CG assets into the procedural environments, maintaining spatial consistency and depth throughout the cinematic sequence.</p>
+        <div class="grid-3">
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/aoPass/forest.png" alt="Forest AO Pass">
+            </div>
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/aoPass/stadium.png" alt="Stadium AO Pass">
+            </div>
+            <div class="media-item aspect-16-9">
+                <img src="projects/euphonyVoyage/images/projectFileScreenShots/aoPass/stageWithDragon.png" alt="Stage AO Pass">
+            </div>
+        </div>
+
+        <!-- Motion Graphics Mashups -->
+        <h2 class="section-title">Synergetic Motion Design & Rhythmic Sync</h2>
+        <p class="section-description">Promotional assets developed through a tightly integrated Blender and After Effects pipeline, focusing on tempo-mapped visual effects and dynamic typographic animation. Each mashup is meticulously synchronized to the artists' performance tracks, utilizing procedural animation nodes and custom shaders to visualize the energy of the Euphony Voyage 6 concert tour.</p>
+        
         <!-- 4:5 Videos Grid -->
         <section class="video-grid">
             <div class="media-item video-4-5 video-local-container clickable-video">

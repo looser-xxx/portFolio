@@ -186,20 +186,44 @@ body {
 }
 
 /* --- Responsive --- */
-@media (max-width: 1200px) {
-    :root {
-        --container-width: 85%;
-    }
+/* Section titles for project breakdown */
+.section-title {
+    margin: 4rem 0 1rem 0;
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    font-weight: 400;
+}
+
+.section-description {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    max-width: 800px;
+}
+
+/* New Grid Layouts */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+}
+
+.aspect-16-9 {
+    aspect-ratio: 16 / 9;
+}
+
+.aspect-1-1 {
+    aspect-ratio: 1 / 1;
 }
 
 @media (max-width: 768px) {
-    :root {
-        --container-width: 95%;
-    }
-    .project-header h1 {
-        font-size: 2.5rem;
-    }
-    .poster-grid, .video-grid {
+    .grid-2, .grid-3 {
         grid-template-columns: 1fr;
     }
 }
