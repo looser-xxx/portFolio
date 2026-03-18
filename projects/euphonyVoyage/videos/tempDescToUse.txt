@@ -1,0 +1,8 @@
+## Visual Narrative & Scale
+The campaign utilizes a sophisticated "macro-to-micro" storytelling approach. It begins with an expansive, high-altitude aerial view of a lush river canyon, establishing a grand cinematic scale. The camera seamlessly transitions through urban environments before culminating in a massive concert venue. This handles the scale impressively, shifting from kilometers of natural landscape to the dense, high-energy atmosphere of a stadium filled with thousands of simulated attendees.
+
+## Photorealism & Lighting
+Showcasing excellent use of Global Illumination and volumetric scattering, the environment interactions create realistic highlights and deep, soft shadows. The urban scenes demonstrate well-developed PBR materials with realistic weathering and texture displacement. The entire sequence is bathed in "golden hour" lighting, providing a warm, luxury aesthetic that perfectly aligns with the high-end nature of the event.
+
+## Proceduralism & Crowd Simulation
+The concert sequence is a technical highlight, managing thousands of individual characters through advanced crowd simulation logic. The dense foliage and urban layouts were generated using Geometry Nodes for procedural scattering, allowing for vast, detailed environments without the overhead of manual placement. Intricate details like dynamic floating serpent structures on stage highlight the use of physics-based animations to create an immersive experience.

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Euphony Voyage 6 | Reality Studios</title>
+    <link rel="stylesheet" href="euphonyStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="back-nav">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Gallery</a>
+    </nav>
+
+    <main class="project-container">
+        
+        <header class="project-header">
+            <h1>Euphony Voyage 6</h1>
+            <p>
+                A comprehensive 3D/VFX campaign developed for a premier event management company, showcasing the visual identity for a landmark concert featuring India's leading artists, <strong>Sidhe Mauth</strong> and <strong>Shreya Ghoshal</strong>. 
+                This project focuses on atmospheric world-building, high-fidelity character rendering, and dynamic motion graphics to capture the essence of their unique musical styles.
+            </p>
+        </header>
+
+        <!-- Main Video (Local) -->
+        <section class="media-item video-16-9 video-local-container clickable-video">
+            <video controls playsinline preload="none" poster="projects/euphonyVoyage/videos/poster.jpg">
+                <source src="projects/euphonyVoyage/videos/EuphonyVoyage6_MainVideo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
+        <!-- 9:16 Posters Grid -->
+        <section class="poster-grid">
+            <div class="media-item poster-9-16">
+                <img src="projects/euphonyVoyage/images/posters/seedhe%20Maut_9x16.jpg.jpeg" alt="Seedhe Maut Poster">
+            </div>
+            <div class="media-item poster-9-16">
+                <img src="projects/euphonyVoyage/images/posters/shreya%209x16.jpg.jpeg" alt="Shreya Ghoshal Poster">
+            </div>
+        </section>
+
+        <!-- 4:5 Videos Grid -->
+        <section class="video-grid">
+            <div class="media-item video-4-5 video-local-container clickable-video">
+                <video controls playsinline preload="none" poster="projects/euphonyVoyage/videos/moGraph/thumb_1.jpg">
+                    <source src="projects/euphonyVoyage/videos/moGraph/vid_1_opt.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="media-item video-4-5 video-local-container clickable-video">
+                <video controls playsinline preload="none" poster="projects/euphonyVoyage/videos/moGraph/thumb_2.jpg">
+                    <source src="projects/euphonyVoyage/videos/moGraph/vid_2_opt.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="media-item video-4-5 video-local-container clickable-video">
+                <video controls playsinline preload="none" poster="projects/euphonyVoyage/videos/moGraph/thumb_3.jpg">
+                    <source src="projects/euphonyVoyage/videos/moGraph/vid_3_opt.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="media-item video-4-5 video-local-container clickable-video">
+                <video controls playsinline preload="none" poster="projects/euphonyVoyage/videos/moGraph/thumb_4.jpg">
+                    <source src="projects/euphonyVoyage/videos/moGraph/vid_4_opt.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="text-align: center; padding: 4rem 2rem; color: #555; font-size: 0.8rem; border-top: 1px solid #1a1a1a; margin-top: 4rem;">
+        &copy; 2024 Reality Studios. All rights reserved.
+    </footer>
+
+    <script src="projectScript.js"></script>
+    <script>
+        // Custom click-to-load logic
+        document.querySelectorAll('.clickable-video video').forEach(v => {
+            v.addEventListener('click', function() {
+                if (this.paused) {
+                    this.play();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

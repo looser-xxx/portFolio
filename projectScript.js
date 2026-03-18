@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    const items = document.querySelectorAll('.masonry-item');
+    const items = document.querySelectorAll('.masonry-item, .media-item');
     items.forEach(item => observer.observe(item));
 
 
@@ -44,9 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
     items.forEach(item => {
         item.addEventListener('click', () => {
             const img = item.querySelector('img');
-            lightboxImg.src = img.src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Disable background scroll
+            if (img) {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Disable background scroll
+            }
         });
     });
 
